@@ -1,0 +1,6 @@
+#!/bin/bash
+## Boot the app
+
+if [ "$CG_INSTANCE_POOL_NAME" == "web"  ]; then
+  exec /usr/src/entrypoint
+fi
