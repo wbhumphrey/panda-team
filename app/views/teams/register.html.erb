@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form>
+  <section>
+    <div class="form-field-title">
+      <div class="form-field-title-text">
+        Name Your Class
+      </div>
+    </div>
+    <div class="form-field-input">
+      <input type="text"
+             id="className"
+             class="form-field-input-text"
+             onchange="onChange()"
+             value=""
+             placeholder="Class Name" />
+    </div>
+  </section>
+</form>
+
+<button onclick="authenticate()">Authenticate</button>
+
+<script src="https://statics.teams.microsoft.com/sdk/v0.4/js/MicrosoftTeams.min.js"></script>
+<script type="text/javascript">
+  var HOST = "https://bdb8eddb.ngrok.io";
+
+  microsoftTeams.initialize();
+
+  microsoftTeams.settings.registerOnSaveHandler(function (saveEvent) {
+    // know what canvas domain is associated with this tab
+    // get a teacher's access token
+    // pick one of the teacher's courses
+    // create the relationship between teacher, course, and team
+
+    var className = document.getElementById('className');
+
+    microsoftTeams.settings.setSettings({
+      entityId: className.value,
+      contentUrl: "https://38e08469.ngrok.io/api/values?name={upn}&tenant={tid}&group={groupId}&entity={entityId}",
+      suggestedDisplayName: "EduTab",
+      websiteUrl: "https://38e08469.ngrok.io/api/values?name={upn}&tenant={tid}&group={groupId}&entity={entityId}",
+      removeUrl: "https://38e08469.ngrok.io/remove.html"
+    });
+    saveEvent.notifySuccess();
+  });
+
+  function onChange() {
+    if (className.value != "") {
+      microsoftTeams.settings.setValidityState(true);
+    }
+  }
+
+  function authenticate() {
+    microsoftTeams.authentication.authenticate({
+      url: HOST + '/users/authenticate',
+      width: '1000',
+      height: '1000',
+      successCallback: function(){ window.location.replace(HOST + '/register_class') },
+      failureCallback: function(){alert('failure :(')},
+    })
+  }
+
+</script>
+</body>
+</html>

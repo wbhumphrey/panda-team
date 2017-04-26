@@ -1,0 +1,15 @@
+<button onclick="succeed()">Success</button>
+<button onclick="fail()">Failure</button>
+
+<script src="https://statics.teams.microsoft.com/sdk/v0.4/js/MicrosoftTeams.min.js"></script>
+<script type="text/javascript">
+  microsoftTeams.initialize();
+
+  function succeed(){
+    microsoftTeams.authentication.notifySuccess();
+  }
+
+  function fail(){
+    microsoftTeams.authentication.notifyFailure();
+  }
+</script>
