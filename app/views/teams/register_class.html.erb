@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form>
+  <section>
+    <div class="form-field-title">
+      <div class="form-field-title-text">
+        Pick a class
+      </div>
+    </div>
+    <div class="form-field-input">
+      <select id="classId" onchange="onChange()">
+        <option value=""></option>
+        <option value="123">Science</option>
+        <option value="456">Math</option>
+        <option value="789">History</option>
+      </select>
+    </div>
+  </section>
+</form>
+
+<script src="https://statics.teams.microsoft.com/sdk/v0.4/js/MicrosoftTeams.min.js"></script>
+<script type="text/javascript">
+  var HOST = "https://bdb8eddb.ngrok.io";
+
+  microsoftTeams.initialize();
+
+  microsoftTeams.settings.registerOnSaveHandler(function (saveEvent) {
+    microsoftTeams.settings.setSettings({
+      entityId: selectedClass(),
+      contentUrl: HOST + "/teams/course/{entityId}",
+//      contentUrl: HOST + "/api/values?name={upn}&tenant={tid}&group={groupId}&entity={entityId}",
+      suggestedDisplayName: "Canvas",
+//      websiteUrl: HOST + "/api/values?name={upn}&tenant={tid}&group={groupId}&entity={entityId}",
+//      removeUrl: HOST + "/remove.html"
+    });
+    saveEvent.notifySuccess();
+  });
+
+  function selectedClass() {
+    var e = document.getElementById('classId');
+    return e.options[e.selectedIndex].value;
+  }
+
+  function onChange() {
+    microsoftTeams.settings.setValidityState(selectedClass() != "");
+  }
+</script>
+</body>
+</html>
