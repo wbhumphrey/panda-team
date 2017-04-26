@@ -1,9 +1,11 @@
 version: '2'
 services:
   web: &APP_CONFIG
-    command: bundle exec rails s -p 80 -b 0.0.0.0
+    command: bundle exec rails s -p 3056 -b 0.0.0.0
     build:
       context: .
+    ports:
+      - "3056"
     links:
       - postgres
       - redis
@@ -11,6 +13,7 @@ services:
       DATABASE_URL: postgres://postgres@postgres:5432/
       REDIS_URL: redis://redis:6379
       VIRTUAL_HOST: panda-team.docker
+      VIRTUAL_PORT: 3056
     volumes:
       - gems:/home/docker/.gem/ruby/2.3.0
 
