@@ -1,6 +1,7 @@
 version: '2'
 services:
   web: &APP_CONFIG
+    command: bundle exec rails s -p 80 -b 0.0.0.0
     build:
       context: .
     links:
@@ -9,7 +10,6 @@ services:
     environment: &APP_ENVIRONMENT
       DATABASE_URL: postgres://postgres@postgres:5432/
       REDIS_URL: redis://redis:6379
-      RAILS_ENV: development
       VIRTUAL_HOST: panda-team.docker
     volumes:
       - gems:/home/docker/.gem/ruby/2.3.0
