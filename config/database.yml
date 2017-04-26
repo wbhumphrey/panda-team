@@ -1,12 +1,14 @@
 default: &default
   adapter: postgresql
   pool: 5
-  host: localhost
   timeout: 5000
+  encoding: utf8
 
 development:
   <<: *default
   database: panda-team-development
+  host: postgres
+  username: postgres
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -14,6 +16,8 @@ development:
 test:
   <<: *default
   database: panda-team-test
+  host: postgres
+  username: postgres
 
 production:
   <<: *default
