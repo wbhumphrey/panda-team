@@ -11,12 +11,12 @@ import Select from 'instructure-ui/lib/components/Select'
 import Button from 'instructure-ui/lib/components/Button'
 
 const HOST = 'https://bdb8eddb.ngrok.io';
-const { arrayOf, shape, string } = React.PropTypes
+const { arrayOf, shape, string, number } = React.PropTypes
 
 class CourseRegisterApp extends Component {
   static propTypes = {
     courses: arrayOf(shape({
-      id: string.isRequired,
+      id: number.isRequired,
       name: string.isRequired,
     })).isRequired
   }
@@ -37,11 +37,8 @@ class CourseRegisterApp extends Component {
     })
   }
 
-  authenticate () {
-
-  }
-
   onSubmit = () => {
+    console.log('submit::', this.courseSelect.value)
     microsoftTeams.settings.setValidityState(this.courseSelect.value != "");
   }
 
@@ -54,7 +51,7 @@ class CourseRegisterApp extends Component {
             ref={(c) => { this.courseSelect = c }}
             label={<Typography color="primary-inverse">Choose Course:</Typography>}
           >
-            {this.props.courses.map(course => (<option value={course.id}>{course.name}</option>))}
+            {this.props.courses.map(course => (<option key={course.id} value={course.id}>{course.name}</option>))}
           </Select>
           <Button variant="primary" onClick={this.onSubmit}>Submit</Button>
         </FormFieldGroup>

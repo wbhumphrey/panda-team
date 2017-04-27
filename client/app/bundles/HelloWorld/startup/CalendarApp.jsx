@@ -24,7 +24,9 @@ class CalendarApp extends Component {
   render () {
     return (
       <div>
-        <Calendar />
+        <div className="floating-calendar">
+          <Calendar />
+        </div>
       </div>
     )
   }

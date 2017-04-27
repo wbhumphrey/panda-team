@@ -36,7 +36,7 @@ class TeacherRegisterApp extends Component {
           <TextInput
             ref={(c) => { this.urlInput = c }}
             label={<Typography color="primary-inverse">Canvas URL:</Typography>}
-            defaultValue="https://karl.instructure.com"
+            defaultValue="https://mattg.instructure.com"
           />
           <Button variant="primary" onClick={this.onRegisterClick}>Register</Button>
         </FormFieldGroup>
