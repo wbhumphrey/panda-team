@@ -5,25 +5,32 @@ class AuthController < ApplicationController
     uri = URI.parse(params['canvas_host'])
     render 'Invalid Domain' unless uri.scheme && uri.host
 
+    auth_uri = URI::Generic.build({
+      scheme: uri.scheme,
+      host: uri.host,
+    })
+
+    state_payload = { canvas_host: auth_uri.to_s }
+    JWT.encode(state_payload, jwt_secret , 'HS256')
+
+
     auth_params = {
       client_id: ENV['CLIENT_ID'],
       response_type: 'code',
       redirect_uri: auth_success_url,
-      state: ''
+      state: JWT.encode(state_payload, jwt_secret , 'HS256')
     }
 
-    auth_uri = URI::Generic.build({
-      scheme: uri.scheme,
-      host: uri.host,
-      path: '/login/oauth2/auth',
-      query: auth_params.to_query
-    })
+    auth_uri.path = '/login/oauth2/auth'
+    auth_uri.query = auth_params.to_query
 
     redirect_to auth_uri.to_s
   end
 
   def success
-    referer = URI(request.referer)
+    decoded_token = JWT.decode(params[:state], jwt_secret, true, { :algorithm => 'HS256' })
+
+    token_uri = URI(decoded_token.first['canvas_host'])
 
     token_params = {
       grant_type: 'authorization_code',
@@ -33,15 +40,17 @@ class AuthController < ApplicationController
       code: params['code']
     }
 
-    token_uri = URI::Generic.build({
-      scheme: referer.scheme,
-      host: referer.host,
-      path: "/login/oauth2/token",
-      query: token_params.to_query
-    })
+    token_uri.path = "/login/oauth2/token"
+    token_uri.query = token_params.to_query
 
     response = HTTParty.post(token_uri.to_s)
 
     render text: response.body
+  end
+
+  private
+
+  def jwt_secret
+    ENV['JWT_SECRET'] || (raise 'No JWT secret configured')
   end
 end

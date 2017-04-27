@@ -7,16 +7,14 @@ Canvas Url: <input id="canvasDomain" value="https://karl.instructure.com" />
 
 <script src="https://statics.teams.microsoft.com/sdk/v0.4/js/MicrosoftTeams.min.js"></script>
 <script type="text/javascript">
-  var HOST = "https://bdb8eddb.ngrok.io";
-
   microsoftTeams.initialize();
 
   function authenticate() {
     microsoftTeams.authentication.authenticate({
-      url: HOST + '/auth?canvas_host=' + document.getElementById('canvasDomain').value,
+      url: '/auth?canvas_host=' + document.getElementById('canvasDomain').value,
       width: '1000',
       height: '1000',
-      successCallback: function(){ window.location.replace(HOST + '/teams/register_class') },
+      successCallback: function(){ window.location.replace('/teams/register_class') },
       failureCallback: function(){alert('failure :(')},
     })
   }

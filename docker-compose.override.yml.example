@@ -3,6 +3,7 @@ services:
   web:
     env_vars:
       CLIENT_SECRET: somekey
+      JWT_SECRET: super_secret
 
     volumes:
       - .:/usr/src/app
