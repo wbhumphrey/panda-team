@@ -5,11 +5,11 @@
 <script type="text/javascript">
   microsoftTeams.initialize();
 
-  function succeed(){
+  if(<%= auth_success %>){
+    debugger
     microsoftTeams.authentication.notifySuccess();
-  }
-
-  function fail(){
+  } else {
+    debugger
     microsoftTeams.authentication.notifyFailure();
   }
 </script>

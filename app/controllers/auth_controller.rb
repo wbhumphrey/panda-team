@@ -13,7 +13,6 @@ class AuthController < ApplicationController
     state_payload = { canvas_host: auth_uri.to_s }
     JWT.encode(state_payload, jwt_secret , 'HS256')
 
-
     auth_params = {
       client_id: ENV['CLIENT_ID'],
       response_type: 'code',
@@ -45,7 +44,15 @@ class AuthController < ApplicationController
 
     response = HTTParty.post(token_uri.to_s)
 
-    render text: response.body
+    response = JSON.parse(response.body)
+
+    auth_success = false
+    if response['access_token']
+      session[:user] = { access_token: response['access_token'] }
+      auth_success = true
+    end
+
+    render locals: { auth_success: auth_success }
   end
 
   private
