@@ -37,8 +37,12 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'listen', '~> 3.0.5'
 
+gem 'jwt', '~> 1.5.6'
+gem 'httparty', '~> 0.14.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'pry'
   gem 'byebug', platform: :mri
 end
 

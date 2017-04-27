@@ -14,6 +14,7 @@ services:
       REDIS_URL: redis://redis:6379
       VIRTUAL_HOST: panda-team.docker
       VIRTUAL_PORT: 3056
+      CLIENT_ID: 170000000000423
     volumes:
       - gems:/home/docker/.gem/ruby/2.3.0
 

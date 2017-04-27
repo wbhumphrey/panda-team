@@ -2,7 +2,7 @@
 <html>
 <body>
 
-Canvas Url: <input id="canvasDomain" />
+Canvas Url: <input id="canvasDomain" value="https://karl.instructure.com" />
 <button onclick="authenticate()">Authenticate</button>
 
 <script src="https://statics.teams.microsoft.com/sdk/v0.4/js/MicrosoftTeams.min.js"></script>
@@ -13,7 +13,7 @@ Canvas Url: <input id="canvasDomain" />
 
   function authenticate() {
     microsoftTeams.authentication.authenticate({
-      url: HOST + '/users/authenticate',
+      url: HOST + '/auth?canvas_host=' + document.getElementById('canvasDomain').value,
       width: '1000',
       height: '1000',
       successCallback: function(){ window.location.replace(HOST + '/teams/register_class') },

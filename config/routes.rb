@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get 'teams/register'
   get 'teams/register_class'
 
-  get 'users/authenticate'
+  get 'auth' => 'auth#authenticate'
+  get 'auth/success'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
