@@ -1,7 +1,7 @@
 version: '2'
 services:
   web:
-    env_vars:
+    environment:
       CLIENT_SECRET: somekey
       JWT_SECRET: super_secret
 
