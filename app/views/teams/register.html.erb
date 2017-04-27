@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>Register</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      background-color: #394B58;
+      background-image: linear-gradient(transparent, transparent 80%, #2D3B45);
+      color: #fdfdfd;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+    }
+
+    .wrapper {
+      background: url(http://usfsm.edu/wp-content/uploads/2014/06/Canvas-Mobile-App-Icon.png) no-repeat top center;
+      background-size: 100px;
+      padding-top: 120px;
+      width: 400px;
+      margin: 100px auto 0;
+    }
+
+    .wrapper h1 {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+  </style>
+</head>
 <body>
+  <script src="https://statics.teams.microsoft.com/sdk/v0.4/js/MicrosoftTeams.min.js"></script>
 
-Canvas Url: <input id="canvasDomain" value="https://karl.instructure.com" />
-<button onclick="authenticate()">Authenticate</button>
+  <main class="wrapper">
+    <%= react_component("TeacherRegisterApp", props: nil, prerender: false) %>
+  </main>
 
-<script src="https://statics.teams.microsoft.com/sdk/v0.4/js/MicrosoftTeams.min.js"></script>
-<script type="text/javascript">
-  microsoftTeams.initialize();
-
-  function authenticate() {
-    microsoftTeams.authentication.authenticate({
-      url: '/auth?canvas_host=' + document.getElementById('canvasDomain').value,
-      width: '1000',
-      height: '1000',
-      successCallback: function(){ window.location.replace('/teams/register_class') },
-      failureCallback: function(){alert('failure :(')},
-    })
-  }
-
-</script>
 </body>
 </html>
