@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'teams/register'
   get 'teams/register_class'
+  get 'teams' => 'teams#index'
 
   get 'calendar/index'
 
