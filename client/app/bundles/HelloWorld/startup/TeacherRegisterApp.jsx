@@ -2,18 +2,12 @@ import React, { Component } from 'react'
 
 import ApplyTheme from 'instructure-ui/lib/components/ApplyTheme'
 import 'instructure-ui/lib/themes/canvas'
-ApplyTheme.setDefaultTheme('canvas')
 
 import Typography from 'instructure-ui/lib/components/Typography'
 import Heading from 'instructure-ui/lib/components/Heading'
 import FormFieldGroup from 'instructure-ui/lib/components/FormFieldGroup'
 import TextInput from 'instructure-ui/lib/components/TextInput'
 import Button from 'instructure-ui/lib/components/Button'
-
-
-// Canvas Url: <input id="canvasDomain" value="https://karl.instructure.com" />
-// <button onclick="authenticate()">Authenticate</button>
-
 
 class TeacherRegisterApp extends Component {
   componentDidMount () {
