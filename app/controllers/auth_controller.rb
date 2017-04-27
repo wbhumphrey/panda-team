@@ -19,8 +19,6 @@ class AuthController < ApplicationController
       query: auth_params.to_query
     })
 
-    puts auth_uri.to_s
-
     redirect_to auth_uri.to_s
   end
 
@@ -42,14 +40,8 @@ class AuthController < ApplicationController
       query: token_params.to_query
     })
 
-    puts token_uri.to_s
-    puts token_params.to_json
-
     response = HTTParty.post(token_uri.to_s)
 
-    # uri = URI.parse("/login/oauth2/auth?code=#{params['code']}")
-    # http = Net::HTTP.new(referer.host, referer.port)
-    # request = Net::HTTP::Post.new(uri.request_uri, header)
     render text: response.body
   end
 end
