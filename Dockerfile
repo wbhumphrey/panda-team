@@ -10,7 +10,7 @@ COPY . $APP_HOME
 RUN chown -R docker:docker $APP_HOME
 
 USER docker
-RUN gem install foreman bundle \
+RUN gem install bundle \
   && bundle install --jobs 8
 
 WORKDIR $APP_HOME/client
