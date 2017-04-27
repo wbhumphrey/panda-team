@@ -11,9 +11,9 @@
     <div class="form-field-input">
       <select id="classId" onchange="onChange()">
         <option value=""></option>
-        <option value="123">Science</option>
-        <option value="456">Math</option>
-        <option value="789">History</option>
+        <% courses.each do |course| %>
+          <option value="<%= course['id'] %>"><%= course['name'] %></option>
+        <% end %>
       </select>
     </div>
   </section>

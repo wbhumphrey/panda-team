@@ -27,10 +27,6 @@ class AuthController < ApplicationController
   end
 
   def success
-    decoded_token = JWT.decode(params[:state], jwt_secret, true, { :algorithm => 'HS256' })
-
-    token_uri = URI(decoded_token.first['canvas_host'])
-
     token_params = {
       grant_type: 'authorization_code',
       client_id: ENV['CLIENT_ID'],
@@ -39,6 +35,9 @@ class AuthController < ApplicationController
       code: params['code']
     }
 
+    decoded_token = JWT.decode(params[:state], jwt_secret, true, { :algorithm => 'HS256' })
+    canvas_host = decoded_token.first['canvas_host']
+    token_uri = URI(canvas_host)
     token_uri.path = "/login/oauth2/token"
     token_uri.query = token_params.to_query
 
@@ -48,7 +47,10 @@ class AuthController < ApplicationController
 
     auth_success = false
     if response['access_token']
-      session[:user] = { access_token: response['access_token'] }
+      session[:user] = {
+        access_token: response['access_token'],
+        canvas_host: canvas_host
+      }
       auth_success = true
     end
 
