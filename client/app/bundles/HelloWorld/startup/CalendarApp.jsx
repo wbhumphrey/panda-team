@@ -12,6 +12,10 @@ import 'rc-calendar/dist/rc-calendar.css'
 import DayEventList from '../components/DayEventList'
 
 class CalendarApp extends Component {
+  static propTypes = {
+    entityId: React.PropTypes.string.isRequired,
+  }
+
   constructor (props) {
     super(props)
     this.state = {
@@ -23,7 +27,7 @@ class CalendarApp extends Component {
   componentDidMount () {
     window.location.hash = ''
     this.setState({ isLoading: true })
-    axios.get('/teams')
+    axios.get('/teams?entity_id=' + this.props.entityId)
       .then(res => {
         const events = res.data
         const days = events.reduce((map, event) => {
