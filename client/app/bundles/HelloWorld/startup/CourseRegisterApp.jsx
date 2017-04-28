@@ -10,7 +10,7 @@ import TextInput from 'instructure-ui/lib/components/TextInput'
 import Select from 'instructure-ui/lib/components/Select'
 import Button from 'instructure-ui/lib/components/Button'
 
-const HOST = 'https://bdb8eddb.ngrok.io';
+const HOST = 'https://panda-team-edge.inseng.net';
 const { arrayOf, shape, string, number } = React.PropTypes
 
 class CourseRegisterApp extends Component {
@@ -26,8 +26,8 @@ class CourseRegisterApp extends Component {
 
     microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
       microsoftTeams.settings.setSettings({
-        entityId: this.courseSelect.value,
-        contentUrl: HOST + "/teams/course/{entityId}",
+        entityId: "course_" + this.courseSelect.value,
+        contentUrl: HOST + "/calendar?entity_id={entityId}",
   //      contentUrl: HOST + "/api/values?name={upn}&tenant={tid}&group={groupId}&entity={entityId}",
         suggestedDisplayName: "Canvas",
   //      websiteUrl: HOST + "/api/values?name={upn}&tenant={tid}&group={groupId}&entity={entityId}",
