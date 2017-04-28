@@ -3,6 +3,7 @@ import moment from 'moment'
 
 import Typography from 'instructure-ui/lib/components/Typography'
 import ToggleDetails from 'instructure-ui/lib/components/ToggleDetails'
+import Link from 'instructure-ui/lib/components/Link'
 
 import IconAssignmentSolid from 'instructure-icons/lib/solid/IconAssignmentSolid'
 import IconQuizSolid from 'instructure-icons/lib/solid/IconQuizSolid'
@@ -31,25 +32,36 @@ export default class CalendarEvent extends Component {
   }
 
   renderTitle () {
-    const { assignment, title } = this.props.event
+    const { assignment, title, html_url } = this.props.event
     return (
       <div className="calendar-event__title">
         {this.renderIcon()}
         {assignment && (<Typography color="secondary">Due {moment(assignment.due_at).format('LT')}<span style={{display: 'inline-block', width: '50px'}} /></Typography>)}
-        <Typography color="secondary">{title}</Typography>
+        <Typography>
+          <Link title="open in Canvas" href={html_url}>{title}</Link>
+        </Typography>
+      </div>
+    )
+  }
+
+  renderContent () {
+    const { description } = this.props.event
+
+    return (
+      <div className="calendar-event__content">
+
+        <div dangerouslySetInnerHTML={{ __html: description }} />
       </div>
     )
   }
 
   render () {
-    const { title } = this.props.event
-
     return (
       <div className="calendar-event">
         <ToggleDetails
           summary={this.renderTitle()}
         >
-        {/* details go here? */}
+          {this.renderContent()}
         </ToggleDetails>
       </div>
     )

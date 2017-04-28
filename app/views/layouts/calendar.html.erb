@@ -19,21 +19,22 @@
       }
 
       .wrapper {
-        width: 900px;
+        max-width: 900px;
         height: 100%;
         background: #fff;
         position: relative;
-        padding: 50px 10px 0;
+        padding: 500px 10px 500px;
       }
 
       .floating-calendar {
-        position: absolute;
+        position: fixed;
         top: 20px;
         right: 20px;
       }
 
       .calendar-day {
         margin-bottom: 70px;
+        padding-top: 10px;
       }
 
       .calendar-day h4 {
@@ -44,6 +45,15 @@
 
       .calendar-event {
         margin: 15px 0;
+      }
+
+      .calendar-event__content {
+        padding: 10px 0 30px 35px;
+        background: #f5f5f5;
+      }
+
+      .calendar-event__content img {
+        display: none;
       }
 
       .calendar-event__title {
@@ -59,6 +69,13 @@
       .calendar-event__icon svg {
         top: 3px;
         position: relative;
+      }
+
+      .rc-calendar-input-wrap,
+      .rc-calendar-footer,
+      .rc-calendar-next-year-btn,
+      .rc-calendar-prev-year-btn {
+        display: none;
       }
     </style>
   </head>
