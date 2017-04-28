@@ -38,10 +38,35 @@ export default class CalendarEvent extends Component {
         {this.renderIcon()}
         {assignment && (<Typography color="secondary">Due {moment(assignment.due_at).format('LT')}<span style={{display: 'inline-block', width: '50px'}} /></Typography>)}
         <Typography>
-          <Link title="open in Canvas" href={html_url}>{title}</Link>
+          <Link target="_blank" title="open in Canvas" href={html_url}>{title}</Link>
         </Typography>
       </div>
     )
+  }
+
+  renderAssignmentContent () {
+    const { assignment } = this.props.event
+    if (assignment) {
+      const { points_possible, grading_type, submission_types } = assignment
+
+      return (
+        <div>
+          <Typography size="small">
+            {grading_type === 'points'
+              && (`${points_possible} pts`)
+              || grading_type}
+          </Typography>
+          &nbsp;|&nbsp;
+          <Typography size="small">
+            <span style={{textTransform: 'capitalize'}}>
+              {submission_types.map(sub => sub.replace(/_/g, ' ')).join(', ')}
+            </span>
+          </Typography>
+        </div>
+      )
+    } else {
+      return null
+    }
   }
 
   renderContent () {
@@ -49,8 +74,8 @@ export default class CalendarEvent extends Component {
 
     return (
       <div className="calendar-event__content">
-
-        <div dangerouslySetInnerHTML={{ __html: description }} />
+        {this.renderAssignmentContent()}
+        <Typography size="small" color="secondary" as="div" dangerouslySetInnerHTML={{ __html: description }} />
       </div>
     )
   }
