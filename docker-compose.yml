@@ -16,6 +16,7 @@ services:
       VIRTUAL_PORT: 3056
       CLIENT_ID: 170000000000423
     volumes:
+      - .:/usr/src/app
       - gems:/home/docker/.gem/ruby/2.3.0
 
   postgres:
