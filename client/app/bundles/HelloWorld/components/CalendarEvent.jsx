@@ -5,10 +5,10 @@ import Typography from 'instructure-ui/lib/components/Typography'
 import ToggleDetails from 'instructure-ui/lib/components/ToggleDetails'
 import Link from 'instructure-ui/lib/components/Link'
 
-import IconAssignmentSolid from 'instructure-icons/lib/solid/IconAssignmentSolid'
-import IconQuizSolid from 'instructure-icons/lib/solid/IconQuizSolid'
-import IconDiscussionSolid from 'instructure-icons/lib/solid/IconDiscussionSolid'
-import IconCalendarMonthSolid from 'instructure-icons/lib/solid/IconCalendarMonthSolid'
+import IconAssignmentSolid from 'instructure-icons/lib/Solid/IconAssignmentSolid'
+import IconQuizSolid from 'instructure-icons/lib/Solid/IconQuizSolid'
+import IconDiscussionSolid from 'instructure-icons/lib/Solid/IconDiscussionSolid'
+import IconCalendarMonthSolid from 'instructure-icons/lib/Solid/IconCalendarMonthSolid'
 
 import propTypes from '../propTypes'
 
