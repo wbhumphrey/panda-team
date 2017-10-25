@@ -1,6 +1,6 @@
 {
-  "name": "react-webpack-rails-tutorial",
-  "version": "0.0.1",
+  "name": "panda-team",
+  "version": "1.0.0",
   "private": true,
   "engines": {
     "node": "6.9.0",
