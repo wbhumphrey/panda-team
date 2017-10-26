@@ -11,7 +11,7 @@ services:
       DATABASE_URL: postgres://postgres@postgres:5432/
       REDIS_URL: redis://redis:6379
       VIRTUAL_HOST: panda-teams.docker
-      VIRTUAL_PORT: 3056
+      VIRTUAL_PORT: 3000
       CLIENT_ID: 170000000000423
     volumes:
       - .:/usr/src/app
