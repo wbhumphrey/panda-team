@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'teams/register_class'
   get 'teams' => 'teams#index'
 
-  get 'calendar/index'
+  get 'calendar' => 'calendar#index'
 
   get 'auth' => 'auth#authenticate'
   get 'auth/success'
