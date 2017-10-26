@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
       per_page: 1000,
       start_date: 1.week.ago.iso8601,
       end_date: 3.weeks.from_now.iso8601,
-      context_codes: ["course_#{1}"],
+      context_codes: ["course_#{params[:entity_id]}"],
       type: 'event' #|| 'assignment'
     }
 

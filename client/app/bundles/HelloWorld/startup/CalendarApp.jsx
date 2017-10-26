@@ -65,15 +65,19 @@ class CalendarApp extends Component {
 
   renderEvents () {
     const { days } = this.state
-    return Object.keys(days)
-      .map(day => <DayEventList key={day} day={day} events={days[day]} />)
+    if(Object.keys(days).length > 0){
+      return Object.keys(days)
+        .map(day => <DayEventList key={day} day={day} events={days[day]} />)
+    } else {
+      return <p>There are no recent or upcoming events</p>
+    }
   }
 
   render () {
     return (
       <div>
-        {this.state.isLoading
-          && (<Spinner title="Loading Calendar Data" />)
+        {
+          this.state.isLoading && (<Spinner title="Loading Calendar Data" />)
           || this.renderEvents()
         }
         <div className="floating-calendar">
