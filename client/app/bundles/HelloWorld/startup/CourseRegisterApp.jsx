@@ -9,9 +9,10 @@ import FormFieldGroup from 'instructure-ui/lib/components/FormFieldGroup'
 import TextInput from 'instructure-ui/lib/components/TextInput'
 import Select from 'instructure-ui/lib/components/Select'
 import Button from 'instructure-ui/lib/components/Button'
+import PropTypes from 'prop-types'
 
-const HOST = 'https://panda-team-edge.inseng.net';
-const { arrayOf, shape, string, number } = React.PropTypes
+const HOST = 'https://panda-team-edge.inseng.net'
+const { arrayOf, shape, string, number } = PropTypes
 
 class CourseRegisterApp extends Component {
   static propTypes = {
