@@ -36,10 +36,12 @@ class CourseRegisterApp extends Component {
       });
       saveEvent.notifySuccess();
     })
+
+    this.onChange()
   }
 
-  onSubmit = () => {
-    console.log('submit::', this.courseSelect.value)
+  onChange = () => {
+    console.log('submit::', this.courseSelect.value);
     microsoftTeams.settings.setValidityState(this.courseSelect.value != "");
   }
 
@@ -49,12 +51,12 @@ class CourseRegisterApp extends Component {
         <FormFieldGroup description=" " label=" ">
           <Heading level="h1" color="primary-inverse">Register Course</Heading>
           <Select
+            onChange={this.onChange}
             ref={(c) => { this.courseSelect = c }}
             label={<Typography color="primary-inverse">Choose Course:</Typography>}
           >
             {this.props.courses.map(course => (<option key={course.id} value={course.id}>{course.name}</option>))}
           </Select>
-          <Button variant="primary" onClick={this.onSubmit}>Submit</Button>
         </FormFieldGroup>
       </div>
     )
