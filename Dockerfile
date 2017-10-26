@@ -11,10 +11,12 @@ COPY . $APP_HOME
 RUN chown -R docker:docker $APP_HOME
 
 USER docker
-RUN gem install bundle -v 1.13.6 && \
+RUN gem install bundler -v 1.13.6 && \
     bundle install --jobs 4
 
 WORKDIR $APP_HOME/client
 RUN yarn install --pure-lockfile
 
 WORKDIR $APP_HOME
+RUN bundle exec rake assets:clean assets:precompile
+

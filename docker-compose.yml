@@ -4,8 +4,6 @@ services:
     command: foreman start -f Procfile.dev
     build:
       context: .
-    ports:
-      - "3056:3056"
     links:
       - postgres
       - redis
