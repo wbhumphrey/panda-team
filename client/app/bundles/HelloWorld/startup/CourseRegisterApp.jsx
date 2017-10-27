@@ -46,20 +46,29 @@ class CourseRegisterApp extends Component {
   }
 
   render () {
-    return (
-      <div>
-        <FormFieldGroup description=" " label=" ">
-          <Heading level="h1" color="primary-inverse">Register Course</Heading>
-          <Select
-            onChange={this.onChange}
-            ref={(c) => { this.courseSelect = c }}
-            label={<Typography color="primary-inverse">Choose Course:</Typography>}
-          >
-            {this.props.courses.map(course => (<option key={course.id} value={course.id}>{course.name}</option>))}
-          </Select>
-        </FormFieldGroup>
-      </div>
-    )
+    if(this.props.courses.length > 0){
+      return (
+        <div>
+          <FormFieldGroup description=" " label=" ">
+            <Heading level="h1" color="primary-inverse">Register Course</Heading>
+            <Select
+              onChange={this.onChange}
+              ref={(c) => { this.courseSelect = c }}
+              label={<Typography color="primary-inverse">Choose Course:</Typography>}
+            >
+              {this.props.courses.map(course => (<option key={course.id} value={course.id}>{course.name}</option>))}
+            </Select>
+          </FormFieldGroup>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <Heading level="h1" color="primary-inverse">No Courses Found</Heading>
+          <p>You must be enrolled as an instructor in this account</p>
+        </div>
+      )
+    }
   }
 }
 

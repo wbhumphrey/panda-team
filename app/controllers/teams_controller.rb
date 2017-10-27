@@ -10,10 +10,12 @@ class TeamsController < ApplicationController
   def register_class
     render permission_denied unless access_token
 
-    response = canvas_api('/api/v1/courses', 'enrollment_type=teacher')
+    response = canvas_api('/api/v1/courses', 'enrollment_type=teacher&per_page=100')
     courses = JSON.parse(response.body)
 
-    render locals: { courses: courses }
+    courses.select!{|course| course['id'].to_s.size < 9 }
+
+    render locals: { courses: courses, base_uri: base_canvas_uri }
   end
 
   def index
