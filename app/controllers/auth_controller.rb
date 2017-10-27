@@ -32,7 +32,8 @@ class AuthController < ApplicationController
       client_id: ENV['CLIENT_ID'],
       client_secret: ENV['CLIENT_SECRET'],
       redirect_uri: auth_success_url,
-      code: params['code']
+      code: params['code'],
+      replace_tokens: true
     }
 
     decoded_token = JWT.decode(params[:state], jwt_secret, true, { :algorithm => 'HS256' })
